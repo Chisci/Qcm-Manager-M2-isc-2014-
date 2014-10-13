@@ -1,12 +1,12 @@
-#Planning fonctionel
+#Planning fonctionnel
 
 
-##Gestion des droits d'utilisateur			X heures
+>##Gestion des droits d'utilisateur X heures
 	S'enregistrer		0,5
 	S'authentifier		0,5
 	Recuperer mot de passe		0,5
 			
-##Back Office			X heures
+>##Back Office			X heures
 	Gestion users		1,5
 	Gestion exam		3
 ##Interface examinateur			X heures
@@ -27,5 +27,5 @@
 	Utilitaires		2
 	Jboss forge		2
 
-###Lien google doc :
-https://docs.google.com/spreadsheets/d/1pmiD9kM5kM55hktNjSly0K-xgr1QOzVatO5rABTpCnI/edit?usp=sharing
+###Liens : 
+- [Google Doc](https://docs.google.com/spreadsheets/d/1pmiD9kM5kM55hktNjSly0K-xgr1QOzVatO5rABTpCnI/edit?usp=sharing)
