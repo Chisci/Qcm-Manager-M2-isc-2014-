@@ -1,4 +1,4 @@
-package org.QCMtest.model;
+package fr.uds.model;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import javax.persistence.Version;
 import java.lang.Override;
 
 @Entity
-public class Question implements Serializable
+public class GoodAnswer implements Serializable
 {
 
    @Id
@@ -20,12 +20,6 @@ public class Question implements Serializable
    @Version
    @Column(name = "version")
    private int version;
-
-   @Column
-   private String intitule;
-
-   @Column
-   private boolean valide;
 
    public Long getId()
    {
@@ -48,17 +42,26 @@ public class Question implements Serializable
    }
 
    @Override
+   public String toString()
+   {
+      String result = getClass().getSimpleName() + " ";
+      if (id != null)
+         result += "id: " + id;
+      return result;
+   }
+
+   @Override
    public boolean equals(Object obj)
    {
       if (this == obj)
       {
          return true;
       }
-      if (!(obj instanceof Question))
+      if (!(obj instanceof GoodAnswer))
       {
          return false;
       }
-      Question other = (Question) obj;
+      GoodAnswer other = (GoodAnswer) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -75,39 +78,6 @@ public class Question implements Serializable
       final int prime = 31;
       int result = 1;
       result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
-
-   public String getIntitule()
-   {
-      return intitule;
-   }
-
-   public void setIntitule(String intitule)
-   {
-      this.intitule = intitule;
-   }
-
-   public boolean isValide()
-   {
-      return valide;
-   }
-
-   public void setValide(boolean valide)
-   {
-      this.valide = valide;
-   }
-
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (id != null)
-         result += "id: " + id;
-      result += ", version: " + version;
-      if (intitule != null && !intitule.trim().isEmpty())
-         result += ", intitule: " + intitule;
-      result += ", valide: " + valide;
       return result;
    }
 }

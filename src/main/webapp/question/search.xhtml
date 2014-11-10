@@ -29,10 +29,10 @@
 				<h:panelGroup styleClass="search">
 
 					<h:panelGrid columnClasses="label,component,required" columns="3">
-						<h:outputLabel for="questionBeanExampleIntitule" value="Intitule:"/>
+						<h:outputLabel for="questionBeanExampleText" value="Text:"/>
 						<h:panelGroup>
-							<h:inputText id="questionBeanExampleIntitule" value="#{questionBean.example.intitule}"/>
-							<h:message for="questionBeanExampleIntitule" styleClass="error"/>
+							<h:inputText id="questionBeanExampleText" value="#{questionBean.example.text}"/>
+							<h:message for="questionBeanExampleText" styleClass="error"/>
 						</h:panelGroup>
 						<h:outputText/>
 					</h:panelGrid>
@@ -46,20 +46,11 @@
 			<h:dataTable id="questionBeanPageItems" styleClass="data-table" value="#{questionBean.pageItems}" var="_item">
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Intitule"/>
+						<h:outputText value="Text"/>
 					</f:facet>
 					<h:link outcome="/question/view">
 						<f:param name="id" value="#{_item.id}"/>
-						<h:outputText id="itemIntitule" value="#{_item.intitule}"/>
-					</h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Valide"/>
-					</f:facet>
-					<h:link outcome="/question/view">
-						<f:param name="id" value="#{_item.id}"/>
-						<h:outputText styleClass="#{_item.valide ? 'boolean-true' : 'boolean-false'}" value=""/>
+						<h:outputText id="itemText" value="#{_item.text}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

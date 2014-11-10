@@ -1,8 +1,7 @@
-package org.QCMtest.model;
+package fr.uds.model;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,14 +11,13 @@ import java.lang.Override;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.QCMtest.model.Question;
+import fr.uds.model.Question;
 import java.util.Set;
 import java.util.HashSet;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "EXAM")
-public class Examen implements Serializable
+public class Exam implements Serializable
 {
 
    @Id
@@ -31,11 +29,11 @@ public class Examen implements Serializable
    private int version;
 
    @Column
-   private String name;
+   private String title;
 
    @Column
    @Temporal(TemporalType.DATE)
-   private Date dateDebut;
+   private Date startDate;
 
    @OneToMany
    private Set<Question> questions = new HashSet<Question>();
@@ -67,11 +65,11 @@ public class Examen implements Serializable
       {
          return true;
       }
-      if (!(obj instanceof Examen))
+      if (!(obj instanceof Exam))
       {
          return false;
       }
-      Examen other = (Examen) obj;
+      Exam other = (Exam) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -91,37 +89,32 @@ public class Examen implements Serializable
       return result;
    }
 
-   public String getName()
+   public String getTitle()
    {
-      return name;
+      return title;
    }
 
-   public void setName(String name)
+   public void setTitle(String title)
    {
-      this.name = name;
+      this.title = title;
    }
 
-   public Date getDateDebut()
+   public Date getStartDate()
    {
-      return dateDebut;
+      return startDate;
    }
 
-   public void setDateDebut(Date dateDebut)
+   public void setStartDate(Date startDate)
    {
-      this.dateDebut = dateDebut;
+      this.startDate = startDate;
    }
 
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
-      if (id != null)
-         result += "id: " + id;
-      result += ", version: " + version;
-      if (name != null && !name.trim().isEmpty())
-         result += ", name: " + name;
-      if (dateDebut != null)
-         result += ", dateDebut: " + dateDebut;
+      if (title != null && !title.trim().isEmpty())
+         result += "title: " + title;
       return result;
    }
 

@@ -8,50 +8,41 @@
 	template="/resources/scaffold/pageTemplate.xhtml">
 
 	<f:metadata>
-		<f:viewParam name="id" value='#{examenBean.id}'/>
-		<f:event type="preRenderView" listener='#{examenBean.retrieve}'/>
+		<f:viewParam name="id" value='#{examBean.id}'/>
+		<f:event type="preRenderView" listener='#{examBean.retrieve}'/>
 	</f:metadata>
 
-	<ui:param name="pageTitle" value="View Examen"/>
+	<ui:param name="pageTitle" value="View Exam"/>
 
 	<ui:define name="header">
-		Examen
+		Exam
 	</ui:define>
 
 	<ui:define name="subheader">
-		View existing Examen
+		View existing Exam
 	</ui:define>
 
 	<ui:define name="footer"/>
 
 	<ui:define name="main">
 		<h:panelGrid columnClasses="label,component,required" columns="3">
-			<h:outputLabel for="examenBeanExamenName" value="Name:"/>
-			<h:outputText id="examenBeanExamenName" value="#{examenBean.examen.name}"/>
+			<h:outputLabel for="examBeanExamTitle" value="Title:"/>
+			<h:outputText id="examBeanExamTitle" value="#{examBean.exam.title}"/>
 			<h:outputText/>
-			<h:outputLabel for="examenBeanExamenDateDebut" value="Date Debut:"/>
-			<h:outputText id="examenBeanExamenDateDebut" value="#{examenBean.examen.dateDebut}">
+			<h:outputLabel for="examBeanExamStartDate" value="Start Date:"/>
+			<h:outputText id="examBeanExamStartDate" value="#{examBean.exam.startDate}">
 				<f:convertDateTime type="date"/>
 			</h:outputText>
 			<h:outputText/>
-			<h:outputLabel for="examenBeanExamenQuestions" value="Questions:"/>
-			<h:dataTable id="examenBeanExamenQuestions" styleClass="data-table" value="#{forgeview:asList(examenBean.examen.questions)}" var="_item">
+			<h:outputLabel for="examBeanExamQuestions" value="Questions:"/>
+			<h:dataTable id="examBeanExamQuestions" styleClass="data-table" value="#{forgeview:asList(examBean.exam.questions)}" var="_item">
 				<h:column>
 					<f:facet name="header">
-						<h:outputText value="Intitule"/>
+						<h:outputText value="Text"/>
 					</f:facet>
 					<h:link outcome="/question/view">
 						<f:param name="id" value="#{_item.id}"/>
-						<h:outputText id="itemIntitule" value="#{_item.intitule}"/>
-					</h:link>
-				</h:column>
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Valide"/>
-					</f:facet>
-					<h:link outcome="/question/view">
-						<f:param name="id" value="#{_item.id}"/>
-						<h:outputText styleClass="#{_item.valide ? 'boolean-true' : 'boolean-false'}" value=""/>
+						<h:outputText id="itemText" value="#{_item.text}"/>
 					</h:link>
 				</h:column>
 			</h:dataTable>

@@ -1,4 +1,4 @@
-package org.QCMtest.view;
+package fr.uds.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,12 +24,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.QCMtest.model.Examen;
+import fr.uds.model.BadAnswer;
 
 /**
- * Backing bean for Examen entities.
+ * Backing bean for BadAnswer entities.
  * <p/>
- * This class provides CRUD functionality for all Examen entities. It focuses
+ * This class provides CRUD functionality for all BadAnswer entities. It focuses
  * purely on Java EE 6 standards (e.g. <tt>&#64;ConversationScoped</tt> for
  * state management, <tt>PersistenceContext</tt> for persistence,
  * <tt>CriteriaBuilder</tt> for searches) rather than introducing a CRUD framework or
@@ -39,13 +39,13 @@ import org.QCMtest.model.Examen;
 @Named
 @Stateful
 @ConversationScoped
-public class ExamenBean implements Serializable
+public class BadAnswerBean implements Serializable
 {
 
    private static final long serialVersionUID = 1L;
 
    /*
-    * Support creating and retrieving Examen entities
+    * Support creating and retrieving BadAnswer entities
     */
 
    private Long id;
@@ -60,22 +60,22 @@ public class ExamenBean implements Serializable
       this.id = id;
    }
 
-   private Examen examen;
+   private BadAnswer badAnswer;
 
-   public Examen getExamen()
+   public BadAnswer getBadAnswer()
    {
-      return this.examen;
+      return this.badAnswer;
    }
 
-   public void setExamen(Examen examen)
+   public void setBadAnswer(BadAnswer badAnswer)
    {
-      this.examen = examen;
+      this.badAnswer = badAnswer;
    }
 
    @Inject
    private Conversation conversation;
 
-   @PersistenceContext(unitName = "QCMtest-persistence-unit", type = PersistenceContextType.EXTENDED)
+   @PersistenceContext(unitName = "qcm-persistence-unit", type = PersistenceContextType.EXTENDED)
    private EntityManager entityManager;
 
    public String create()
@@ -102,22 +102,22 @@ public class ExamenBean implements Serializable
 
       if (this.id == null)
       {
-         this.examen = this.example;
+         this.badAnswer = this.example;
       }
       else
       {
-         this.examen = findById(getId());
+         this.badAnswer = findById(getId());
       }
    }
 
-   public Examen findById(Long id)
+   public BadAnswer findById(Long id)
    {
 
-      return this.entityManager.find(Examen.class, id);
+      return this.entityManager.find(BadAnswer.class, id);
    }
 
    /*
-    * Support updating and deleting Examen entities
+    * Support updating and deleting BadAnswer entities
     */
 
    public String update()
@@ -128,13 +128,13 @@ public class ExamenBean implements Serializable
       {
          if (this.id == null)
          {
-            this.entityManager.persist(this.examen);
+            this.entityManager.persist(this.badAnswer);
             return "search?faces-redirect=true";
          }
          else
          {
-            this.entityManager.merge(this.examen);
-            return "view?faces-redirect=true&id=" + this.examen.getId();
+            this.entityManager.merge(this.badAnswer);
+            return "view?faces-redirect=true&id=" + this.badAnswer.getId();
          }
       }
       catch (Exception e)
@@ -150,7 +150,7 @@ public class ExamenBean implements Serializable
 
       try
       {
-         Examen deletableEntity = findById(getId());
+         BadAnswer deletableEntity = findById(getId());
 
          this.entityManager.remove(deletableEntity);
          this.entityManager.flush();
@@ -164,14 +164,14 @@ public class ExamenBean implements Serializable
    }
 
    /*
-    * Support searching Examen entities with pagination
+    * Support searching BadAnswer entities with pagination
     */
 
    private int page;
    private long count;
-   private List<Examen> pageItems;
+   private List<BadAnswer> pageItems;
 
-   private Examen example = new Examen();
+   private BadAnswer example = new BadAnswer();
 
    public int getPage()
    {
@@ -188,12 +188,12 @@ public class ExamenBean implements Serializable
       return 10;
    }
 
-   public Examen getExample()
+   public BadAnswer getExample()
    {
       return this.example;
    }
 
-   public void setExample(Examen example)
+   public void setExample(BadAnswer example)
    {
       this.example = example;
    }
@@ -212,7 +212,7 @@ public class ExamenBean implements Serializable
       // Populate this.count
 
       CriteriaQuery<Long> countCriteria = builder.createQuery(Long.class);
-      Root<Examen> root = countCriteria.from(Examen.class);
+      Root<BadAnswer> root = countCriteria.from(BadAnswer.class);
       countCriteria = countCriteria.select(builder.count(root)).where(
             getSearchPredicates(root));
       this.count = this.entityManager.createQuery(countCriteria)
@@ -220,31 +220,25 @@ public class ExamenBean implements Serializable
 
       // Populate this.pageItems
 
-      CriteriaQuery<Examen> criteria = builder.createQuery(Examen.class);
-      root = criteria.from(Examen.class);
-      TypedQuery<Examen> query = this.entityManager.createQuery(criteria
+      CriteriaQuery<BadAnswer> criteria = builder.createQuery(BadAnswer.class);
+      root = criteria.from(BadAnswer.class);
+      TypedQuery<BadAnswer> query = this.entityManager.createQuery(criteria
             .select(root).where(getSearchPredicates(root)));
       query.setFirstResult(this.page * getPageSize()).setMaxResults(
             getPageSize());
       this.pageItems = query.getResultList();
    }
 
-   private Predicate[] getSearchPredicates(Root<Examen> root)
+   private Predicate[] getSearchPredicates(Root<BadAnswer> root)
    {
 
       CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
       List<Predicate> predicatesList = new ArrayList<Predicate>();
 
-      String name = this.example.getName();
-      if (name != null && !"".equals(name))
-      {
-         predicatesList.add(builder.like(builder.lower(root.<String> get("name")), '%' + name.toLowerCase() + '%'));
-      }
-
       return predicatesList.toArray(new Predicate[predicatesList.size()]);
    }
 
-   public List<Examen> getPageItems()
+   public List<BadAnswer> getPageItems()
    {
       return this.pageItems;
    }
@@ -255,17 +249,17 @@ public class ExamenBean implements Serializable
    }
 
    /*
-    * Support listing and POSTing back Examen entities (e.g. from inside an
+    * Support listing and POSTing back BadAnswer entities (e.g. from inside an
     * HtmlSelectOneMenu)
     */
 
-   public List<Examen> getAll()
+   public List<BadAnswer> getAll()
    {
 
-      CriteriaQuery<Examen> criteria = this.entityManager
-            .getCriteriaBuilder().createQuery(Examen.class);
+      CriteriaQuery<BadAnswer> criteria = this.entityManager
+            .getCriteriaBuilder().createQuery(BadAnswer.class);
       return this.entityManager.createQuery(
-            criteria.select(criteria.from(Examen.class))).getResultList();
+            criteria.select(criteria.from(BadAnswer.class))).getResultList();
    }
 
    @Resource
@@ -274,7 +268,7 @@ public class ExamenBean implements Serializable
    public Converter getConverter()
    {
 
-      final ExamenBean ejbProxy = this.sessionContext.getBusinessObject(ExamenBean.class);
+      final BadAnswerBean ejbProxy = this.sessionContext.getBusinessObject(BadAnswerBean.class);
 
       return new Converter()
       {
@@ -297,7 +291,7 @@ public class ExamenBean implements Serializable
                return "";
             }
 
-            return String.valueOf(((Examen) value).getId());
+            return String.valueOf(((BadAnswer) value).getId());
          }
       };
    }
@@ -306,17 +300,17 @@ public class ExamenBean implements Serializable
     * Support adding children to bidirectional, one-to-many tables
     */
 
-   private Examen add = new Examen();
+   private BadAnswer add = new BadAnswer();
 
-   public Examen getAdd()
+   public BadAnswer getAdd()
    {
       return this.add;
    }
 
-   public Examen getAdded()
+   public BadAnswer getAdded()
    {
-      Examen added = this.add;
-      this.add = new Examen();
+      BadAnswer added = this.add;
+      this.add = new BadAnswer();
       return added;
    }
 }

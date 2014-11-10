@@ -1,4 +1,4 @@
-package org.QCMtest.view;
+package fr.uds.view;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import org.QCMtest.model.Question;
+import fr.uds.model.Question;
 
 /**
  * Backing bean for Question entities.
@@ -75,7 +75,7 @@ public class QuestionBean implements Serializable
    @Inject
    private Conversation conversation;
 
-   @PersistenceContext(unitName = "QCMtest-persistence-unit", type = PersistenceContextType.EXTENDED)
+   @PersistenceContext(unitName = "qcm-persistence-unit", type = PersistenceContextType.EXTENDED)
    private EntityManager entityManager;
 
    public String create()
@@ -235,10 +235,10 @@ public class QuestionBean implements Serializable
       CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
       List<Predicate> predicatesList = new ArrayList<Predicate>();
 
-      String intitule = this.example.getIntitule();
-      if (intitule != null && !"".equals(intitule))
+      String text = this.example.getText();
+      if (text != null && !"".equals(text))
       {
-         predicatesList.add(builder.like(builder.lower(root.<String> get("intitule")), '%' + intitule.toLowerCase() + '%'));
+         predicatesList.add(builder.like(builder.lower(root.<String> get("text")), '%' + text.toLowerCase() + '%'));
       }
 
       return predicatesList.toArray(new Predicate[predicatesList.size()]);

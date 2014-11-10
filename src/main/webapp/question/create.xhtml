@@ -5,6 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:forgeview="http://jboss.org/forge/view"
 	template="/resources/scaffold/pageTemplate.xhtml">
 
 	<f:metadata>
@@ -36,16 +37,36 @@
 			<h:messages globalOnly="true" styleClass="error"/>
 
 			<h:panelGrid columnClasses="label,component,required" columns="3">
-				<h:outputLabel for="questionBeanQuestionIntitule" value="Intitule:"/>
+				<h:outputLabel for="questionBeanQuestionText" value="Text:"/>
 				<h:panelGroup>
-					<h:inputText id="questionBeanQuestionIntitule" value="#{questionBean.question.intitule}"/>
-					<h:message for="questionBeanQuestionIntitule" styleClass="error"/>
+					<h:inputText id="questionBeanQuestionText" value="#{questionBean.question.text}"/>
+					<h:message for="questionBeanQuestionText" styleClass="error"/>
 				</h:panelGroup>
 				<h:outputText/>
-				<h:outputLabel for="questionBeanQuestionValide" value="Valide:"/>
+				<h:outputLabel for="questionBeanQuestionAnswers" value="Answers:"/>
 				<h:panelGroup>
-					<h:selectBooleanCheckbox id="questionBeanQuestionValide" value="#{questionBean.question.valide}"/>
-					<h:message for="questionBeanQuestionValide" styleClass="error"/>
+					<ui:param name="_collection" value="#{questionBean.question.answers}"/>
+					<h:dataTable id="questionBeanQuestionAnswers" styleClass="data-table" value="#{forgeview:asList(_collection)}" var="_item">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Text"/>
+							</f:facet>
+							<h:link outcome="/abstractAnswer/view">
+								<f:param name="id" value="#{_item.id}"/>
+								<h:outputText id="itemText" value="#{_item.text}"/>
+							</h:link>
+						</h:column>
+						<h:column footerClass="remove-column" headerClass="remove-column">
+							<h:commandLink action="#{_collection.remove(_item)}" styleClass="remove-button"/>
+						</h:column>
+					</h:dataTable>
+					<h:panelGrid columnClasses=",remove-column" columns="2" styleClass="data-table-footer">
+						<h:selectOneMenu converter="#{abstractAnswerBean.converter}" id="questionBeanQuestionAnswersSelect" value="#{requestScope['questionBeanQuestionAnswersSelect']}">
+							<f:selectItem/>
+							<f:selectItems value="#{abstractAnswerBean.all}"/>
+						</h:selectOneMenu>
+						<h:commandLink action="#{_collection.add(requestScope['questionBeanQuestionAnswersSelect'])}" id="questionBeanQuestionAnswersAdd" onclick="if (document.getElementById(document.forms[0].id+':questionBeanQuestionAnswersSelect').selectedIndex &lt; 1) { alert('Must select a Abstract Answer'); return false; }" styleClass="add-button"/>
+					</h:panelGrid>
 				</h:panelGroup>
 				<h:outputText/>
 			</h:panelGrid>
