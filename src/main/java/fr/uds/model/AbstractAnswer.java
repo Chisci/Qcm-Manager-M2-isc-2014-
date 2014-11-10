@@ -1,7 +1,5 @@
 package fr.uds.model;
 
-import java.lang.Override;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,54 +8,40 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-public class AbstractAnswer
-{
-	   @Id
-	   @GeneratedValue(strategy = GenerationType.AUTO)
-	   @Column(name = "id", updatable = false, nullable = false)
-	   private Long id;
-	   @Version
-	   @Column(name = "version")
-	   private int version;
+public abstract class AbstractAnswer {
 
-   private String text;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	@Column
+	private String text;
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public String getText() {
+		return text;
+	}
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
-   
-   public String getText()
-   {
-      return text;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public void setText(String text)
-   {
-      this.text = text;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (text != null && !text.trim().isEmpty())
-         result += "text: " + text;
-      return result;
-   }
+	public int getVersion() {
+		return this.version;
+	}
+
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 }
