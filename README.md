@@ -1,5 +1,6 @@
 #Planning fonctionnel
 ##Gestion des droits d'utilisateur - X heures
+
 Tache | Estimation
 ------|-----------
 S'enregistrer		| 0,5
