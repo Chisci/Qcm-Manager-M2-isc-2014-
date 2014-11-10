@@ -1,0 +1,107 @@
+# Created by httpswww.gitignore.io
+
+### Eclipse ###
+.pydevproject
+.metadata
+.gradle
+bin
+tmp
+.tmp
+.bak
+.swp
+~.nib
+local.properties
+.settings
+.loadpath
+
+.project
+.classpath
+
+# External tool builders
+.externalToolBuilders
+
+# Locally stored Eclipse launch configurations
+.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# sbteclipse plugin 
+.target
+
+# TeXlipse plugin
+.texlipse
+
+
+### Java ###
+.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp
+
+# Package Files #
+.jar
+.war
+.ear
+
+# virtual machine crash logs, see httpwww.java.comendownloadhelperror_hotspot.xml
+hs_err_pid
+
+
+### Maven ###
+target
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+
+### Intellij ###
+# Covers JetBrains IDEs IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+
+.iml
+
+## Directory-based project format
+.idea
+# if you remove the above rule, at least ignore the following
+
+# User-specific stuff
+# .ideaworkspace.xml
+# .ideatasks.xml
+# .ideadictionaries
+
+# Sensitive or high-churn files
+# .ideadataSources.ids
+# .ideadataSources.xml
+# .ideasqlDataSources.xml
+# .ideadynamic.xml
+# .ideauiDesigner.xml
+
+# Gradle
+# .ideagradle.xml
+# .idealibraries
+
+# Mongo Explorer plugin
+# .ideamongoSettings.xml
+
+## File-based project format
+.ipr
+.iws
+
+## Plugin-specific files
+
+# IntelliJ
+out
+
+# mpeltonensbt-idea plugin
+.idea_modules
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
