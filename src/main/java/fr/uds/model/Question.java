@@ -19,7 +19,7 @@ public class Question implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2057386235847604549L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)
