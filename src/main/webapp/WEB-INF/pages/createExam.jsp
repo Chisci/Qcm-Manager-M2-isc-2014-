@@ -8,7 +8,7 @@
 <title>Create a new Exam</title>
 </head>
 <body>
-	<form method="post">
+	<form method="post" action="./createExam.do">
 		<table>
 			<tr>
 				<td><label for="title">Title</label></td>
@@ -18,11 +18,17 @@
 			<tr>
 				<td><label for="date">Start date</label></td>
 				<td><input id="date" name="date" type="text"
-					value="${exam.startDate }" /></td>
+					value="${ exam.startDate }" /></td>
 			</tr>
 			<tr>
-				<td><label for="q">Your exam have ${exam.getNbQuestion()} question(s).</label></td>
-				<td><input id="q" name="q" type="button" value="Add Questions"/></td>
+				<td><label for="addQuestion">Your exam have
+						${exam.getNbQuestion()} question(s).</label></td>
+				<td><input id="addQuestion" name="addQuestion" type="submit"
+					value="Add Question" /></td>
+			</tr>
+			<tr>
+				<td><input id="submitExam" name="submitExam" type="submit"
+					value="Publish Exam" /></td>
 			</tr>
 		</table>
 	</form>

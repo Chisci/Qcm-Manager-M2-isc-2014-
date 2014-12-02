@@ -28,7 +28,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>welcome.jsp</welcome-file>
+		<welcome-file>WEB-INF/pages/welcome.jsp</welcome-file>
 	</welcome-file-list>
 
 

@@ -116,10 +116,6 @@ public class Exam implements Serializable {
 	public int getNbQuestion() {
 		return this.questions.size();
 	}
-	public String test()
-	{
-		return "test";
-	}
 	public void addQuestion(Question question) {
 		this.questions.add(question);
 	}
