@@ -7,8 +7,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome</title>
 </head>
-<body> COUCOU  ${pageContext.request.userPrincipal.name} 
-<h1>Message : ${message}</h1>
-<a href="<c:url value="/j_spring_security_logout" />">Logout</a>
+<body> 
+<% if (request.getUserPrincipal() == null) 
+{
+ %> IL FAUT TE LOGIN 
+		<form name='loginForm'
+		  action="<c:url value='j_spring_security_check' />" method='POST'>
+		  <fieldset>
+				<label>User:</label>
+				<input type='text' name='j_username' value=''>
+				<br/>
+				<label>Password:</label>
+				<input type='password' name='j_password' />
+				<br/>
+				<input name="submit" type="submit" value="submit" />
+		  </fieldset>
+		</form>
+ <%
+}else{%>
+<blink>COUCOU</blink> ${pageContext.request.userPrincipal.name} 
+ <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
+<%}%>
 </body>
 </html>
