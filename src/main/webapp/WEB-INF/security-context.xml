@@ -6,9 +6,9 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="question/create**" access="ROLE_USER"/>
+        <intercept-url pattern="question/create**" access="ROLE_USER,ROLE_ADMIN"/>
         <intercept-url pattern="/exam/create**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/take**" access="ROLE_USER"/>
+        <intercept-url pattern="/take**" access="ROLE_USER,ROLE_ADMIN"/>
     </http>
 
     <authentication-manager>
