@@ -44,4 +44,10 @@ public abstract class AbstractAnswer {
 	public void setVersion(final int version) {
 		this.version = version;
 	}
+
+	/**
+	 * @return the score
+	 */
+	public abstract int getScore();
+
 }
