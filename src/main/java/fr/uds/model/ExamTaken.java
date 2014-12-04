@@ -2,10 +2,16 @@ package fr.uds.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
 /**
  * Entity implementation class for Entity: ExamTaken
@@ -15,13 +21,24 @@ import javax.persistence.Id;
 
 public class ExamTaken implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 66229607032537057L;
+
 	@Id
-	@GeneratedValue
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
 	
+	@OneToOne
 	private Exam exam;
-	private ArrayList<AnswerTaken> answers;
-	private static final long serialVersionUID = 1L;
+	
+	@OneToMany
+	private List<AnswerTaken> answers = new ArrayList<AnswerTaken>();
 
 	public ExamTaken() {
 		super();
@@ -33,11 +50,11 @@ public class ExamTaken implements Serializable {
 	public void setExam(Exam exam) {
 		this.exam = exam;
 	}   
-	public ArrayList<AnswerTaken> getAnswers() {
+	public List<AnswerTaken> getAnswers() {
 		return this.answers;
 	}
 
-	public void setAnswers(ArrayList<AnswerTaken> answers) {
+	public void setAnswers(List<AnswerTaken> answers) {
 		this.answers = answers;
 	}
 	public int getScore(){
