@@ -12,4 +12,8 @@ public class GoodAnswer extends AbstractAnswer implements Serializable {
 	 */
 	private static final long serialVersionUID = 2854971721526967058L;
 
+	@Override
+	public int getScore() {
+		return 1;
+	}
 }

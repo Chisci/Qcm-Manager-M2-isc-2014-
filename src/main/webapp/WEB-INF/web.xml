@@ -21,11 +21,21 @@
 			<param-value></param-value>
 		</init-param>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- SPring security -->
+	
+ 	<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 	<welcome-file-list>
 		<welcome-file>WEB-INF/pages/welcome.jsp</welcome-file>
@@ -35,4 +45,7 @@
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
+	
+
+    
 </web-app>

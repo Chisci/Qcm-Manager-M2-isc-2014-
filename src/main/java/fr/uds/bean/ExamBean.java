@@ -38,6 +38,10 @@ public class ExamBean {
 
 	// private static final String ADD_QUESTION = "createQuestion";
 
+	private static final String ADD_TAKEEXAM = "takeExam";
+
+	private static final String HOME = "welcome";
+
 	private static final String REDIRECT = "redirect:create.do";
 
 	@Autowired
@@ -51,9 +55,14 @@ public class ExamBean {
 		return DISPLAY;
 	}
 
+	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
+	public String displayTakeExam(HttpServletRequest request, Model model) {
+		
+		return ADD_TAKEEXAM;
+	}
+
 	@RequestMapping(value = "/create.do", method = RequestMethod.POST)
 	public String create(HttpServletRequest request, Model model) {
-
 		userSession.getExam().setTitle(request.getParameter("title"));
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		try {
@@ -65,5 +74,12 @@ public class ExamBean {
 		}
 
 		return REDIRECT;
+	}
+
+	@RequestMapping(value = "/finish.do", method = RequestMethod.POST)
+	public String finish(HttpServletRequest request, Model model)
+			throws ParseException {
+
+		return HOME;
 	}
 }
