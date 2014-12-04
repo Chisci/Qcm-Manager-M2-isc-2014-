@@ -1,20 +1,20 @@
 package fr.uds.model;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
-import javax.persistence.Id;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.Version;
-import java.lang.Override;
-import java.util.Date;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import fr.uds.model.Question;
-import java.util.Set;
-import java.util.HashSet;
-import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
 public class Exam implements Serializable {
@@ -39,7 +39,7 @@ public class Exam implements Serializable {
 	private Date startDate;
 
 	@OneToMany
-	private Set<Question> questions = new HashSet<Question>();
+	private List<Question> questions = new ArrayList<Question>();
 
 	public Long getId() {
 		return this.id;
@@ -106,11 +106,11 @@ public class Exam implements Serializable {
 		return result;
 	}
 
-	public Set<Question> getQuestions() {
+	public List<Question> getQuestions() {
 		return this.questions;
 	}
 
-	public void setQuestions(final Set<Question> questions) {
+	public void setQuestions(final List<Question> questions) {
 		this.questions = questions;
 	}
 	public int getNbQuestion() {
@@ -118,5 +118,17 @@ public class Exam implements Serializable {
 	}
 	public void addQuestion(Question question) {
 		this.questions.add(question);
+	}
+	public String getSimpleDate() {
+		
+		if(startDate != null)
+		{
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			return dateFormat.format(startDate);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

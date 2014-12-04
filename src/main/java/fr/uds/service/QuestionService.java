@@ -15,6 +15,6 @@ public class QuestionService {
 	
 	public void insertQuestion(Question question) {
 		
-		entityManager.persist(question);
+//		entityManager.persist(question);
 	}
 }

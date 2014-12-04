@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create Question</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Take the exam</title>
 </head>
 <body>
-	<form method="post">
+<form method="post" action="./examFinish.do">
 		<table>
 			<tr>
 				<td><label for="question">Question :</label></td>
@@ -25,8 +25,8 @@
 			</tr>
 			<tr>
 				<td><label for="answer3">Answer 3 :</label></td>
-				<td><input id="answer3" name="answer3" type="text" /></td>
-				<td><input id="answer3" type="checkbox"></td>
+				<td><label for="answer3">Answer 3</label></td>
+				<td><input id="answer3" type="checkbox" value="answer x" name="answer y"></td>
 			</tr>
 			<tr>
 				<td><label for="answer4">Answer 4 :</label></td>
