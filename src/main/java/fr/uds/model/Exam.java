@@ -23,6 +23,7 @@ public class Exam implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2553814929367079453L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", updatable = false, nullable = false)

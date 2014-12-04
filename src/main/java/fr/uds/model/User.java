@@ -2,6 +2,7 @@ package fr.uds.model;
 
 import java.io.Serializable;
 import java.lang.String;
+
 import javax.persistence.*;
 
 /**
@@ -11,13 +12,26 @@ import javax.persistence.*;
 @Entity
 public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3271648917218513505L;
+
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
+	
 	private String Login;
+	
 	private String Password;
+	
 	private String Nom;
+	
 	private String Role;
-	private static final long serialVersionUID = 1L;
 
 	public User() {
 		super();
@@ -50,5 +64,4 @@ public class User implements Serializable {
 	public void setRole(String Role) {
 		this.Role = Role;
 	}
-   
 }
