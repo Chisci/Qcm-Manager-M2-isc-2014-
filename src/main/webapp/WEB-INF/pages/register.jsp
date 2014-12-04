@@ -7,6 +7,18 @@
 <title>Sign-in</title>
 </head>
 <body>
-Ca ce passe à fond t'entends ?
+Tu peux créer ton compte ici, lache ton com sur mon skyblog :
+<form name='RegisterForm'
+		 TODO : action="<c:url value='HOME' />" method='POST'>
+		  <fieldset>
+				<label>User:</label>
+				<input type='text' name='j_username' value=''>
+				<br/>
+				<label>Password:</label>
+				<input type='password' name='j_password' />
+				<br/>
+				<input name="submit" type="submit" value="submit" />
+		  </fieldset>
+		</form>
 </body>
 </html>

@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Qcm Manager 2004</title>
 </head>
-<<<<<<< HEAD
 <body> 
 <% if (request.getUserPrincipal() == null) 
 {
@@ -25,7 +24,7 @@
 		  </fieldset>
 		</form>
 	Ou Enregistrez-vous : 
-	<a href="<c:url value="/register.jsp" />">S'enregistrer</a>
+	<a href="<c:url value="/register.do" />">S'enregistrer</a>
  <%
 }else{%>
 <blink>Bonjour : </blink> ${pageContext.request.userPrincipal.name} 

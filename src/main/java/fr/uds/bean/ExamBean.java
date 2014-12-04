@@ -41,6 +41,8 @@ public class ExamBean {
 	private static final String ADD_TAKEEXAM = "takeExam";
 
 	private static final String HOME = "welcome";
+	
+	private static final String REGISTER = "register";
 
 	private static final String REDIRECT = "redirect:create.do";
 
