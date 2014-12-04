@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome</title>
+<title>Qcm Manager 2004</title>
 </head>
 <body> 
 <% if (request.getUserPrincipal() == null) 
 {
- %> IL FAUT TE LOGIN 
+ %> Identifiez vous :
 		<form name='loginForm'
 		  action="<c:url value='j_spring_security_check' />" method='POST'>
 		  <fieldset>
@@ -23,9 +23,11 @@
 				<input name="submit" type="submit" value="submit" />
 		  </fieldset>
 		</form>
+	Ou Enregistrez-vous : 
+	<a href="<c:url value="/register.jsp" />">S'enregistrer</a>
  <%
 }else{%>
-<blink>COUCOU</blink> ${pageContext.request.userPrincipal.name} 
+<blink>Bonjour : </blink> ${pageContext.request.userPrincipal.name} 
  <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
 <%}%>
 </body>
