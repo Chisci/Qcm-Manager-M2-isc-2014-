@@ -13,29 +13,36 @@ import fr.uds.model.Question;
 import fr.uds.service.QuestionService;
 
 @Controller
+@RequestMapping("/question")
 public class QuestionBean {
 	
 	@Autowired
 	private QuestionService questionService;
-
-	private static final String SUCCESS = "WEB-INF/pages/createQuestion.jsp";
 	
-	private static final String RETURN = "WEB-INF/pages/createExam.jsp";
+	@Autowired
+	private UserSession userSession;
 
-	@RequestMapping(value = "/createQuestion.do", method=RequestMethod.GET)
+	private static final String SUCCESS = "createQuestion";
+	
+	private static final String RETURN = "createExam";
+
+	@RequestMapping(value = "/create.do", method=RequestMethod.GET)
 	public String display(HttpServletRequest request, Model model) {
 		
-//		Question question = new Question();
-//		request.getSession().setAttribute("question", question);
 		return SUCCESS;
 	}
 	
-	@RequestMapping(value = "/createQuestion.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/create.do", method = RequestMethod.POST)
 	public String create(HttpServletRequest request, Model model, @RequestParam String submitQuestion) {
 		
-//		Question question = (Question) request.getSession().getAttribute("question");
-//		String title = request.getParameter("question");
-//		question.setText(title);
+		Question question = new Question();
+
+		String title = request.getParameter("question");
+		question.setText(title);
+		
+		questionService.insertQuestion(question);
+		
+		userSession.addQuestion(question);
 		
 		return RETURN;
 	}

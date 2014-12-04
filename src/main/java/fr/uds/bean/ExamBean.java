@@ -2,17 +2,14 @@ package fr.uds.bean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import fr.uds.model.Exam;
 
 /**
  * Session Bean implementation class ExamBean
@@ -34,40 +31,39 @@ import fr.uds.model.Exam;
  */
 
 @Controller
+@RequestMapping("/exam")
 public class ExamBean {
 
-	private static final String DISPLAY = "WEB-INF/pages/createExam.jsp";
+	private static final String DISPLAY = "createExam";
 
-	private static final String ADD_QUESTION = "WEB-INF/pages/createQuestion.jsp";
+	// private static final String ADD_QUESTION = "createQuestion";
 
-	@RequestMapping(value = "/createExam.do", method = RequestMethod.GET)
+	private static final String REDIRECT = "redirect:create.do";
+
+	@Autowired
+	private UserSession userSession;
+
+	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
 	public String display(HttpServletRequest request, Model model) {
 
-		
-		Exam  exam  = (Exam) request.getSession().getAttribute("exam");
-		if(exam == null)
-		{
-			exam = new Exam();
-		}		
-		request.getSession().setAttribute("exam", exam);
+		model.addAttribute("exam", userSession.getExam());
 
 		return DISPLAY;
 	}
 
-	@RequestMapping(value = "/createExam.do", method = RequestMethod.POST)
-	public String create(HttpServletRequest request, Model model) throws ParseException {
-		
-		String title = (String) request.getParameter("title");
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
-		Date date = dateFormat.parse(request.getParameter("date"));
-		
-		Exam exam = (Exam) request.getSession().getAttribute("exam");
+	@RequestMapping(value = "/create.do", method = RequestMethod.POST)
+	public String create(HttpServletRequest request, Model model) {
 
-		exam.setTitle(title);
-		exam.setStartDate(date);
-		request.setAttribute("exam", exam);
-		
-		return ADD_QUESTION;
+		userSession.getExam().setTitle(request.getParameter("title"));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			userSession.getExam().setStartDate(
+					dateFormat.parse(request.getParameter("date")));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+		}
+
+		return REDIRECT;
 	}
 }

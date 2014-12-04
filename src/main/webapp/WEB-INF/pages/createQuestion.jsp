@@ -7,7 +7,7 @@
 <title>Create Question</title>
 </head>
 <body>
-	<form method="post" action="./createQuestion.do">
+	<form method="post">
 		<table>
 			<tr>
 				<td><label for="question">Question :</label></td>
