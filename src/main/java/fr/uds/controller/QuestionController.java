@@ -1,4 +1,4 @@
-package fr.uds.bean;
+package fr.uds.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.uds.model.Question;
 import fr.uds.service.QuestionService;
+import fr.uds.service.UserSession;
 
 @Controller
 @RequestMapping("/question")

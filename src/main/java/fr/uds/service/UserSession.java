@@ -1,4 +1,4 @@
-package fr.uds.bean;
+package fr.uds.service;
 
 import java.util.ArrayList;
 import java.util.List;
