@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.uds.service.ExamService;
+
 /**
- * Session Bean implementation class ExamBean
+ * Session Bean implementation class ExamController
  */
 /**
  * 
@@ -32,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/exam")
-public class ExamBean {
+public class ExamController {
 
 	private static final String DISPLAY = "createExam";
 
@@ -41,31 +43,30 @@ public class ExamBean {
 	private static final String ADD_TAKEEXAM = "takeExam";
 
 	private static final String HOME = "welcome";
-	
-	private static final String REGISTER = "register";
 
 	private static final String REDIRECT = "redirect:create.do";
 
 	@Autowired
 	private UserSession userSession;
+	
+	@Autowired
+	private ExamService examService;
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
 	public String display(HttpServletRequest request, Model model) {
-
+		
 		model.addAttribute("exam", userSession.getExam());
+		model.addAttribute("questions", userSession.getQuestions());
+		model.addAttribute("session", userSession);
 
 		return DISPLAY;
 	}
 
-	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
-	public String displayTakeExam(HttpServletRequest request, Model model) {
-		
-		return ADD_TAKEEXAM;
-	}
-
 	@RequestMapping(value = "/create.do", method = RequestMethod.POST)
 	public String create(HttpServletRequest request, Model model) {
+		
 		userSession.getExam().setTitle(request.getParameter("title"));
+		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			userSession.getExam().setStartDate(
@@ -74,10 +75,16 @@ public class ExamBean {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 		}
-
+		
 		return REDIRECT;
 	}
-
+	
+	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
+	public String displayTakeExam(HttpServletRequest request, Model model) {
+		
+		return ADD_TAKEEXAM;
+	}
+	
 	@RequestMapping(value = "/finish.do", method = RequestMethod.POST)
 	public String finish(HttpServletRequest request, Model model)
 			throws ParseException {

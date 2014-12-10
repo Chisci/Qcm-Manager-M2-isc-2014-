@@ -14,7 +14,7 @@ import fr.uds.service.QuestionService;
 
 @Controller
 @RequestMapping("/question")
-public class QuestionBean {
+public class QuestionController {
 	
 	@Autowired
 	private QuestionService questionService;
@@ -24,7 +24,7 @@ public class QuestionBean {
 
 	private static final String SUCCESS = "createQuestion";
 	
-	private static final String RETURN = "createExam";
+	private static final String RETURN = "redirect:/exam/create.do";
 
 	@RequestMapping(value = "/create.do", method=RequestMethod.GET)
 	public String display(HttpServletRequest request, Model model) {
@@ -37,8 +37,8 @@ public class QuestionBean {
 		
 		Question question = new Question();
 
-		String title = request.getParameter("question");
-		question.setText(title);
+		String text = request.getParameter("question");
+		question.setText(text);
 		
 		questionService.insertQuestion(question);
 		

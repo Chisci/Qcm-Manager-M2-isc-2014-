@@ -19,7 +19,7 @@
 				for="date">Start date</label> <input id="date" name="date"
 				type="text" value="${ exam.getSimpleDate() }" size="30" /> <br />
 			<label for="addQuestion">Your exam has
-				${exam.getNbQuestion()} question(s).</label> <a href="question/create.do">Manage
+				${session.questions.size()} question(s).</label> <a href="<c:url value="/question/create.do"/>">Manage
 				questions</a> <br /> <br /> <input id="submitExam" name="submitExam"
 				type="submit" value="Save Exam" class="sansLabel" /> <br />
 		</fieldset>

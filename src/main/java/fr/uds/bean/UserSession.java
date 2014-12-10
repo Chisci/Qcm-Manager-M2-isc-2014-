@@ -14,15 +14,9 @@ import fr.uds.model.Question;
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class UserSession {
 	
-	private Exam exam;
+	private Exam exam = new Exam();
 	
-	private List<Question> questions;
-	
-	public UserSession() {
-
-		exam = new Exam();
-		questions = new ArrayList<Question>();
-	}
+	private List<Question> questions = new ArrayList<Question>();
 
 	public Exam getExam() {
 		return exam;
@@ -43,5 +37,7 @@ public class UserSession {
 	public void addQuestion(Question question) {
 		this.questions.add(question);
 	}
-
+	public int questionsSize() {
+		return this.questions.size();
+	}
 }

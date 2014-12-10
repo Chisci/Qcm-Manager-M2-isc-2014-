@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Session Bean implementation class ExamBean
+ * Session Bean implementation class ExamController
  */
 /**
  * 
