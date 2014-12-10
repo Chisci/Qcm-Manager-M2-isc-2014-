@@ -1,19 +1,19 @@
-package fr.uds.bean;
+package fr.uds.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.uds.service.ExamService;
-import fr.uds.service.TakingExamBean;
+import fr.uds.service.UserSession;
 
 /**
  * Session Bean implementation class ExamController
@@ -51,17 +51,8 @@ public class ExamController {
 	@Autowired
 	private UserSession userSession;
 	
-	@Autowired
+	@Resource
 	private ExamService examService;
-	
-	@Autowired
-	private TakingExamBean takingExamBean;
-	
-
-	@ModelAttribute("takingExamBean")
-	public TakingExamBean getExamBean(){
-		return takingExamBean;
-	}
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
 	public String display(HttpServletRequest request, Model model) {
@@ -86,6 +77,8 @@ public class ExamController {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 		}
+		
+//		examService.insertExam(userSession.getExam(), userSession.getQuestions());
 		
 		return REDIRECT;
 	}

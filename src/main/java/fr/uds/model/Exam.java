@@ -101,10 +101,8 @@ public class Exam implements Serializable {
 
 	@Override
 	public String toString() {
-		String result = getClass().getSimpleName() + " ";
-		if (title != null && !title.trim().isEmpty())
-			result += "title: " + title;
-		return result;
+		return "Exam [id=" + id + ", version=" + version + ", title=" + title
+				+ ", startDate=" + startDate + ", questions=" + questions + "]";
 	}
 
 	public List<Question> getQuestions() {
