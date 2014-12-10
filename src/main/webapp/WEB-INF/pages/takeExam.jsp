@@ -10,17 +10,20 @@
 <title>Take the exam</title>
 </head>
 <body>
+	<h1>Questionnaire : ${session.getQuestions()}</h1>
 	<form method="post" action="./examFinish.do">
-
 		<table style="width: 333px;">
         <tr>
-            <th>Date</th>
-            <th>Description</th>
+            <th>Questions</th>
+            <th>Reponses</th>
         </tr>
-        <c:forEach var="localVar" items="#{takingExamBeam.getExam(1)}">
-			<tr>
-			    <!-- td><c:out value="${localVar.randomattribut}"/></td-->
-			</tr>
+        <c:forEach items="${session.getQuestions()}" var="question">
+        	<h4>${question.getText()}</h4>
+        	<c:forEach items="${question.getAnswers()}" var="answer">
+				<tr>
+					<td>${answer.getText()} <input type="checkbox" name="test" /></td>
+				</tr>
+			</c:forEach>
         </c:forEach>
     </table>
 
