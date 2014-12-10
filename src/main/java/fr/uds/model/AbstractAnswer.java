@@ -20,6 +20,14 @@ public abstract class AbstractAnswer {
 
 	@Column
 	private String text;
+	
+	public AbstractAnswer() {
+		
+	}
+	
+	public AbstractAnswer(String text) {
+		this.text = text;
+	}
 
 	public String getText() {
 		return text;
@@ -43,6 +51,11 @@ public abstract class AbstractAnswer {
 
 	public void setVersion(final int version) {
 		this.version = version;
+	}
+
+	@Override
+	public String toString() {
+		return "AbstractAnswer [id=" + id + ", text=" + text + "]";
 	}
 
 	/**

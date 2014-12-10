@@ -65,4 +65,10 @@ public class Question implements Serializable {
 	public void setAnswers(final List<AbstractAnswer> answers) {
 		this.answers = answers;
 	}
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", text=" + text + ", answers=" + answers
+				+ "]";
+	}
 }

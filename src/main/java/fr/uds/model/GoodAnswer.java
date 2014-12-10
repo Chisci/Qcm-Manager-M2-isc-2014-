@@ -11,7 +11,16 @@ public class GoodAnswer extends AbstractAnswer implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2854971721526967058L;
-
+	
+	public GoodAnswer(){
+		
+	}
+	
+	public GoodAnswer(String text) {
+		super(text);
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public int getScore() {
 		return 1;

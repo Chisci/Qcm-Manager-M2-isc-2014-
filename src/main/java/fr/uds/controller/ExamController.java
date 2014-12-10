@@ -3,6 +3,7 @@ package fr.uds.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ExamController {
 	@Autowired
 	private UserSession userSession;
 	
-	@Autowired
+	@Resource
 	private ExamService examService;
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
@@ -76,6 +77,8 @@ public class ExamController {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
 		}
+		
+//		examService.insertExam(userSession.getExam(), userSession.getQuestions());
 		
 		return REDIRECT;
 	}

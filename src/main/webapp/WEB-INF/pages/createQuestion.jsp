@@ -16,12 +16,12 @@
 			<tr>
 				<td><label for="answer1">Answer 1 :</label></td>
 				<td><input id="answer1" name="answer1" type="text" /></td>
-				<td><input id="answer1" type="checkbox"></td>
+				<td><input id="answer1" name="answer1check" type="checkbox"></td>
 			</tr>
 			<tr>
 				<td><label for="answer2">Answer 2 :</label></td>
 				<td><input id="answer2" name="answer2" type="text" /></td>
-				<td><input id="answer2" type="checkbox"></td>
+				<td><input id="answer2" name="answer2check" type="checkbox"></td>
 			</tr>
 			<tr>
 				<td><label for="answer3">Answer 3 :</label></td>

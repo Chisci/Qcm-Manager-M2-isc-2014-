@@ -1,20 +1,27 @@
 package fr.uds.service;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import fr.uds.model.Exam;
+import fr.uds.model.Question;
 
-@Service
+@Repository
 public class ExamService {
 	
-	@PersistenceContext
+	@PersistenceContext(name="qcm-persistence-unit")
 	private EntityManager entityManager;
 	
-	public void insertExam(Exam exam) {
+	public void insertExam(Exam exam, List<Question> questions) {
 		
-//		entityManager.persist(exam);
+		exam.setQuestions(questions);
+		
+		System.err.println(exam);
+		
+		entityManager.persist(exam);
 	}
 }
