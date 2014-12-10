@@ -10,23 +10,27 @@
 <title>Take the exam</title>
 </head>
 <body>
-	<h1>Questionnaire : ${session.getQuestions()}</h1>
+	<h1>Questionnaire : ${session.getExam().getTitle()}</h1>
 	<form method="post" action="./examFinish.do">
+	<table>
+	 <c:forEach items="${session.getQuestions()}" var="question">
 		<table style="width: 333px;">
+		<c:out value="Question : '${question.getText()}'"></c:out>
         <tr>
-            <th>Questions</th>
-            <th>Reponses</th>
+            <th>Proposition</th>
+            <th>?</th>
         </tr>
-        <c:forEach items="${session.getQuestions()}" var="question">
-        	<h4>${question.getText()}</h4>
         	<c:forEach items="${question.getAnswers()}" var="answer">
 				<tr>
-					<td>${answer.getText()} <input type="checkbox" name="test" /></td>
+					<td>${answer.getText()}</td>
+					<td><input type="checkbox" name="test" /></td>
 				</tr>
 			</c:forEach>
-        </c:forEach>
+    	</table>
+    </c:forEach>
     </table>
-
+	<input id="examDone" name="examDone"
+				type="submit" value="Done" class="sansLabel" />
 	</form>
 </body>
 </html>

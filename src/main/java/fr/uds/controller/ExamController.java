@@ -86,13 +86,15 @@ public class ExamController {
 	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
 	public String displayTakeExam(HttpServletRequest request, Model model) {
 		
+		model.addAttribute("session", userSession);
+		
 		return ADD_TAKEEXAM;
 	}
 	
 	@RequestMapping(value = "/finish.do", method = RequestMethod.POST)
 	public String finish(HttpServletRequest request, Model model)
 			throws ParseException {
-
+		System.err.println("Donne pressed");
 		return HOME;
 	}
 }
