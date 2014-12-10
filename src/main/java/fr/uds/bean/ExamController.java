@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.uds.service.ExamService;
+import fr.uds.service.TakingExamBean;
 
 /**
  * Session Bean implementation class ExamController
@@ -51,6 +53,15 @@ public class ExamController {
 	
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private TakingExamBean takingExamBean;
+	
+
+	@ModelAttribute("takingExamBean")
+	public TakingExamBean getExamBean(){
+		return takingExamBean;
+	}
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
 	public String display(HttpServletRequest request, Model model) {
