@@ -18,7 +18,6 @@ public class GoodAnswer extends AbstractAnswer implements Serializable {
 	
 	public GoodAnswer(String text) {
 		super(text);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

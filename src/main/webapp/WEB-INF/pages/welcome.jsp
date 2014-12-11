@@ -8,28 +8,29 @@
 <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <title>Qcm Manager 2004</title>
 </head>
-<body> 
-<% if (request.getUserPrincipal() == null) 
-{
- %> Identifiez vous :
-		<form name='loginForm'
-		  action="<c:url value='j_spring_security_check' />" method='POST'>
-		  <fieldset>
-				<label>User:</label>
-				<input type='text' name='j_username' value=''>
-				<br/>
-				<label>Password:</label>
-				<input type='password' name='j_password' />
-				<br/>
-				<input name="submit" type="submit" value="submit" />
-		  </fieldset>
-		</form>
-	Ou Enregistrez-vous : 
+<body>
+	<%
+		if (request.getUserPrincipal() == null) {
+	%>
+	Identifiez vous :
+	<form name='loginForm'
+		action="<c:url value='j_spring_security_check' />" method='POST'>
+		<fieldset>
+			<label>User:</label> <input type='text' name='j_username' value=''>
+			<br /> <label>Password:</label> <input type='password'
+				name='j_password' /> <br /> <input name="submit" type="submit"
+				value="submit" />
+		</fieldset>
+	</form>
+	Ou Enregistrez-vous :
 	<a href="<c:url value="/register.do" />">S'enregistrer</a>
- <%
-}else{%>
-<blink>Bonjour : </blink> ${pageContext.request.userPrincipal.name} 
- <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
-<%}%>
+	<%
+		} else {
+	%>
+	<p>Bonjour : ${pageContext.request.userPrincipal.name}</p>
+	<a href="<c:url value="/j_spring_security_logout" />">Logout</a>
+	<%
+		}
+	%>
 </body>
 </html>

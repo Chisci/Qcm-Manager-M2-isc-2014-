@@ -23,6 +23,6 @@ public class BadAnswer extends AbstractAnswer implements Serializable {
 	
 	@Override
 	public int getScore() {
-		return 0;
+		return -1;
 	}
 }

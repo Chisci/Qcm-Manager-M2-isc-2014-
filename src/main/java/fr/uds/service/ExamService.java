@@ -1,27 +1,22 @@
 package fr.uds.service;
 
-import java.util.List;
+import javax.annotation.Resource;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.uds.model.Exam;
-import fr.uds.model.Question;
 
-@Repository
+@Service
 public class ExamService {
+
 	
-	@PersistenceContext(name="qcm-persistence-unit")
-	private EntityManager entityManager;
+	@Resource
+	private ExamDAO dao;
 	
-	public void insertExam(Exam exam, List<Question> questions) {
+	@Transactional
+	public void save(Exam exam ) {
 		
-		exam.setQuestions(questions);
-		
-		System.err.println(exam);
-		
-		entityManager.persist(exam);
+		dao.persist(exam);
 	}
 }
