@@ -6,7 +6,10 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="question/create**" access="ROLE_USER,ROLE_ADMIN"/>
+     	<form-login 
+		    login-page="/"/>
+		<logout logout-success-url="/" />
+        <intercept-url pattern="question**" access="ROLE_USER,ROLE_ADMIN"/>
         <intercept-url pattern="/exam/create**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/take**" access="ROLE_USER,ROLE_ADMIN"/>
     </http>
@@ -16,8 +19,11 @@
             <user-service>
                 <user name="tristan" password="toto" authorities="ROLE_USER"/>
                 <user name="challut" password="titi" authorities="ROLE_ADMIN"/>
+                <user name="pe" password="tata" authorities="ROLE_ADMIN"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>
-
+<!-- <authentication-manager> -->
+<!--    <authentication-provider user-service-ref="MyUserDetailsService" /> -->
+<!-- </authentication-manager> -->
 </beans:beans>
