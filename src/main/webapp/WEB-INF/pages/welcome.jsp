@@ -26,8 +26,8 @@
 		</form>
 	Ou Enregistrez-vous : 
 	<a href="<c:url value="/register.do" />">S'enregistrer</a>
- <%
-}else{%>
+ <%}
+else{%>
 <blink>Bonjour : </blink> ${pageContext.request.userPrincipal.name} 
  <a href="<c:url value="/j_spring_security_logout" />">Logout</a>
 <%}%>

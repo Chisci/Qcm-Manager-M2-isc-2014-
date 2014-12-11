@@ -49,7 +49,7 @@ public class UserController {
 		return REGISTER;
 	}
 
-	@RequestMapping(value = "/finish.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String finish(HttpServletRequest request, Model model)
 			throws ParseException {
 

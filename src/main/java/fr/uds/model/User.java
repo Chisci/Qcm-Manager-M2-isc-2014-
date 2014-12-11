@@ -2,15 +2,19 @@ package fr.uds.model;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.Collection;
 
 import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * Entity implementation class for Entity: User
  *
  */
 @Entity
-public class User implements Serializable {
+public class User implements Serializable,UserDetails {
 
 	/**
 	 * 
@@ -25,7 +29,7 @@ public class User implements Serializable {
 	@Column(name = "version")
 	private int version;
 	
-	private String Login;
+	private String username;
 	
 	private String Password;
 	
@@ -37,11 +41,11 @@ public class User implements Serializable {
 		super();
 	}   
 	public String getLogin() {
-		return this.Login;
+		return this.username;
 	}
 
 	public void setLogin(String Login) {
-		this.Login = Login;
+		this.username = Login;
 	}   
 	public String getPassword() {
 		return this.Password;
@@ -63,5 +67,35 @@ public class User implements Serializable {
 
 	public void setRole(String Role) {
 		this.Role = Role;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
