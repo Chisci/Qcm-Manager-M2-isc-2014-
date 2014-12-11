@@ -86,6 +86,12 @@ public class ExamController {
 	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
 	public String displayTakeExam(HttpServletRequest request, Model model) {
 		
+		/*
+		 * Il faudrait créer une autre 'session' à passer à cette jsp, qui irait chercher l'examen selectionné (dans la vue d'avant ?)
+		 * 
+		 * Prochaine étape : voir comment y ajouter ou pas les accès à une instance de ExamTaken pour voir quelles sont les réponses données par le gars qui passe l'examen
+		 */
+		
 		model.addAttribute("session", userSession);
 		
 		return ADD_TAKEEXAM;
