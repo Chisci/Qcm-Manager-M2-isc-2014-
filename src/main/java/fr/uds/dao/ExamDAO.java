@@ -1,4 +1,6 @@
-package fr.uds.service;
+package fr.uds.dao;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,5 +19,10 @@ public class ExamDAO {
 	public void persist(Exam exam) {
 		
 		entityManager.persist(exam);
+	}
+	
+	public List<Exam> getAllExam() {
+		
+		return entityManager.createQuery("SELECT e FROM Exam e").getResultList();
 	}
 }

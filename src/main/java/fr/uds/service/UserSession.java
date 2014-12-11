@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import fr.uds.model.Exam;
 import fr.uds.model.Question;
+import fr.uds.model.User;
 
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
@@ -17,6 +18,8 @@ public class UserSession {
 	private Exam exam = new Exam();
 	
 	private List<Question> questions = new ArrayList<Question>();
+	
+	private User user;
 
 	public Exam getExam() {
 		return exam;
@@ -39,5 +42,13 @@ public class UserSession {
 	}
 	public int questionsSize() {
 		return this.questions.size();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

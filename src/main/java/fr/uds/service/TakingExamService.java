@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import fr.uds.model.Exam;
 
 @Service
-public class TakingExamBean {
+public class TakingExamService {
 
 	@PersistenceContext
 	EntityManager entityManager;

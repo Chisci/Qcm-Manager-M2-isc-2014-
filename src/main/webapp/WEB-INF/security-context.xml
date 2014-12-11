@@ -10,7 +10,7 @@
 		    login-page="/"/>
 		<logout logout-success-url="/" />
         <intercept-url pattern="question**" access="ROLE_USER,ROLE_ADMIN"/>
-        <intercept-url pattern="/exam/create**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/exam/**" access="ROLE_ADMIN"/>
         <intercept-url pattern="/take**" access="ROLE_USER,ROLE_ADMIN"/>
     </http>
 

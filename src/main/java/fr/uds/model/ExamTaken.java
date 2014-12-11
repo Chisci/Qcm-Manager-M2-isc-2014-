@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -39,6 +40,9 @@ public class ExamTaken implements Serializable {
 	
 	@OneToMany
 	private List<AnswerTaken> answers = new ArrayList<AnswerTaken>();
+	
+	@ManyToOne
+	private User user;
 
 	public ExamTaken() {
 		super();
@@ -56,6 +60,13 @@ public class ExamTaken implements Serializable {
 
 	public void setAnswers(List<AnswerTaken> answers) {
 		this.answers = answers;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public int getScore(){
 		int score = 0;

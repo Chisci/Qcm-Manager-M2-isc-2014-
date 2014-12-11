@@ -2,10 +2,10 @@ package fr.uds.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +18,7 @@ import fr.uds.model.AnswerTaken;
 import fr.uds.model.ExamTaken;
 import fr.uds.model.Question;
 import fr.uds.service.ExamService;
+import fr.uds.service.ExamTakenService;
 import fr.uds.service.UserSession;
 
 /**
@@ -43,7 +44,7 @@ import fr.uds.service.UserSession;
 @RequestMapping("/exam")
 public class ExamController {
 
-	private static final String DISPLAY = "createExam";
+	private static final String DISPLAY_CREATE = "createExam";
 
 	// private static final String ADD_QUESTION = "createQuestion";
 
@@ -55,24 +56,37 @@ public class ExamController {
 	
 	private static final String DISPLAY_SCORE = "display_score";
 
+	private static final String DISPLAY_TAB = "display_tab_exam";
+
 	@Autowired
 	private UserSession userSession;
 
 	@Resource
 	private ExamService examService;
+	
+	@Resource
+	private ExamTakenService examTakenService;
+	
+	@RequestMapping(value = "/display.do", method = RequestMethod.GET)
+	public String displayGET(Model model) {
+		
+		model.addAttribute("exams", examService.getAll());
+		
+		return DISPLAY_TAB;
+	}
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
-	public String display(HttpServletRequest request, Model model) {
+	public String createGET(Model model) {
 
 		model.addAttribute("exam", userSession.getExam());
 		model.addAttribute("questions", userSession.getQuestions());
 		model.addAttribute("session", userSession);
-
-		return DISPLAY;
+		
+		return DISPLAY_CREATE;
 	}
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.POST)
-	public String create(HttpServletRequest request, Model model) {
+	public String createPOST(HttpServletRequest request, Model model) {
 
 		userSession.getExam().setTitle(request.getParameter("title"));
 
@@ -124,6 +138,8 @@ public class ExamController {
 			}
 			examTaken.getAnswers().add(answerTaken);
 		}
+		
+		examTakenService.save(examTaken);
 		
 		model.addAttribute("examTaken", examTaken);
 		return DISPLAY_SCORE;
