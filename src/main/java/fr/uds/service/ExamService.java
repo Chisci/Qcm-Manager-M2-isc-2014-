@@ -27,4 +27,9 @@ public class ExamService {
 	public List<Exam> getAll() {
 		return dao.getAllExam();
 	}
+	
+	@Transactional
+	public Exam getExamById(long id){
+		return dao.getExamById(id);
+	}
 }

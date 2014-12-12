@@ -26,4 +26,8 @@ public class ExamDAO {
 		
 		return entityManager.createQuery("SELECT e FROM Exam e").getResultList();
 	}
+	
+	public Exam getExamById(long id){
+		return (Exam) entityManager.createQuery("SELECT exam FROM Exam exam WHERE exam.id="+id).getSingleResult();
+	}
 }
