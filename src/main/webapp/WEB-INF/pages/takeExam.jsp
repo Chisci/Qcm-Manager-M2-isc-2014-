@@ -11,15 +11,15 @@
 <title>Take the exam</title>
 </head>
 <body>
-	<h1>Questionnaire : ${session.exam.title}</h1>
+	<h1>Questionnaire : ${exam.title}</h1>
 	<form method="post">
 		<fieldset>
-			<c:forEach items="${session.questions}" var="question">
+			<c:forEach items="${exam.questions}" var="question">
 				<fieldset>
 					<legend>Question : ${question.text}</legend>
 					<c:forEach items="${question.getAnswers()}" var="answer">
-						<label for="${ answer.myID }">${answer.text}</label>
-						<input id="${ answer.myID }" type="checkbox" name="${ answer.myID }" />
+						<label for="${ answer.id }">${answer.text}</label>
+						<input id="${ answer.id }" type="checkbox" name="${ answer.id }" />
 						<br />
 					</c:forEach>
 				</fieldset>

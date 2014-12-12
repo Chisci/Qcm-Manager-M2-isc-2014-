@@ -22,8 +22,8 @@
 			<a href="<c:url value="/question/create.do"/>">Manage questions</a>
 			<br />
 			<br /> 
-			<a href="<c:url value="/exam/take.do"/>"><input type="button" value="Take" /></a>
-			<input id="submitExam" name="submitExam" type="submit" value="Save Exam" class="sansLabel" />
+			<a href="<c:url value="/exam/display.do"/>"><input type="button" value="See All" /></a>
+			<input id="submitExam" name="submitExam" type="submit" value="Publish Exam" class="sansLabel" />
 		</fieldset>
 	</form>
 </body>

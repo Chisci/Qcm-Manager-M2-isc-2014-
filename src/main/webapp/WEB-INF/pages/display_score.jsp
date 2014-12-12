@@ -10,6 +10,6 @@
 <body>
 	<p>You get : ${examTaken.getScore() }</p>
 	
-	<a href="<c:url value="/exam/create.do"/>">New Exam.</a>
+	<a href="<c:url value="/exam/display.do"/>">Display.</a>
 </body>
 </html>

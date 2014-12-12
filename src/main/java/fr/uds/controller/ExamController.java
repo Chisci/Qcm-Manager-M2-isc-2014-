@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.uds.model.AbstractAnswer;
 import fr.uds.model.AnswerTaken;
+import fr.uds.model.Exam;
 import fr.uds.model.ExamTaken;
 import fr.uds.model.Question;
 import fr.uds.model.User;
@@ -25,21 +26,6 @@ import fr.uds.service.UserSession;
 
 /**
  * Session Bean implementation class ExamController
- */
-/**
- * 
- * Exemple de code
- * 
- * @Autowired private DummyService dummyService;
- * @RequestMapping(value = "/create.do", method = RequestMethod.POST) public
- *                       String create(Model model, @RequestParam String
- *                       dummyInput) {
- * 
- *                       model.addAttribute("dummyString",
- *                       dummyService.dummy(dummyInput));
- * 
- *                       return SUCCESS; }
- *
  */
 
 @Controller
@@ -77,7 +63,7 @@ public class ExamController {
 
 		String loggedUser = request.getUserPrincipal().getName();
 		
-		userSession.getUser().setUsername(loggedUser);
+		userSession.setCurrentUser(loggedUser);
 		model.addAttribute("session", userSession);
 		model.addAttribute("exams", examService.getAll());
 		
@@ -111,13 +97,22 @@ public class ExamController {
 			// e.printStackTrace();
 		}
 
-		 examService.save(userSession.getExam());
+		userSession.getExam().setQuestions(userSession.getQuestions());
 
+		userSession.getExam().setAuthor(request.getUserPrincipal().getName());
+		
+		 examService.save(userSession.getExam());
+		 
+		 userSession.reset();
+//		 userSession = new UserSession();
+		 
 		return REDIRECT;
 	}
 
 	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
 	public String displayTakeExam(HttpServletRequest request, Model model) {
+		
+		Exam exam = null;
 
 		/*
 		 * Il faudrait créer une autre 'session' à passer à cette jsp, qui irait
@@ -128,30 +123,44 @@ public class ExamController {
 		 * le gars qui passe l'examen
 		 */
 
-		model.addAttribute("session", userSession);
-
-		return ADD_TAKEEXAM;
+		long id = 0;
+		String test = (request.getParameter("id"));
+		
+		if(test != null){	
+			id = Long.parseLong(request.getParameter("id"));
+		
+			exam = examService.getExamById(id);
+			
+			// mapper l'exam avec son id
+			
+			model.addAttribute("exam", exam);
+			userSession.setCurrentExam(exam);
+	
+			return ADD_TAKEEXAM;
+		}
+		return "";
 	}
 
 	@RequestMapping(value = "/take.do", method = RequestMethod.POST)
 	public String result(HttpServletRequest request, Model model) {
 		
+		Exam currentExam = userSession.getCurrentExam();
 		ExamTaken examTaken = new ExamTaken();
 		// à remplacer par LE bon exam' et pas le dernier qui traine dans la session
-		examTaken.setExam(userSession.getExam());
+		examTaken.setExam(currentExam);
 		
-		for (Question question : userSession.getQuestions()) {
+		for (Question question : currentExam.getQuestions()) {
 			AnswerTaken answerTaken = new AnswerTaken();
 			answerTaken.setRelatedQuestion(question);
 			for (AbstractAnswer answer : question.getAnswers()) {
-				if("on".equals(request.getParameter(""+answer.getMyID()))) { 
+				if("on".equals(request.getParameter(""+answer.getId()))) { 
 					answerTaken.setAnswer(answer);
 				}
 			}
 			examTaken.getAnswers().add(answerTaken);
 		}
 		
-		examTakenService.save(examTaken);
+		//examTakenService.save(examTaken);
 		
 		model.addAttribute("examTaken", examTaken);
 		return DISPLAY_SCORE;
