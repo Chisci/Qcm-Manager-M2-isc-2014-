@@ -18,8 +18,8 @@
 				<fieldset>
 					<legend>Question : ${question.text}</legend>
 					<c:forEach items="${question.getAnswers()}" var="answer">
-						<label for="${ answer.myID }">${answer.text}</label>
-						<input id="${ answer.myID }" type="checkbox" name="${ answer.myID }" />
+						<label for="${ answer.id }">${answer.text}</label>
+						<input id="${ answer.id }" type="checkbox" name="${ answer.id }" />
 						<br />
 					</c:forEach>
 				</fieldset>

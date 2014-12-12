@@ -18,7 +18,7 @@
 			<label for="${ exam.id }">${ exam.title }</label>
 			<label>created by ${ exam.author }</label>
 			<c:if test="${ exam.author == session.currentUser }">
-				<input type="button" value="Manage Exam">
+				<input type="button" value="See Result">
 			</c:if>
 			<c:if test="${ exam.author != session.currentUser }">
 				<a href="<c:url value="/exam/take.do?id=${ exam.id }"/>"><input type="button" value="Take Exam"></a>
@@ -27,5 +27,6 @@
 			<br />
 		</c:forEach>
 	</fieldset>
+	<a href="<c:url value="/exam/create.do"/>"><input type="button" value="Create Exam"/></a>
 </body>
 </html>

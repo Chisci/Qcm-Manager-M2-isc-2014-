@@ -18,6 +18,8 @@ public class UserSession {
 	
 	private Exam exam;
 	
+	private Exam currentExam;
+	
 	private List<Question> questions;
 	
 	private User user;
@@ -29,6 +31,7 @@ public class UserSession {
 		exam = new Exam();
 		questions = new ArrayList<Question>();
 		user = new User();
+		setCurrentExam(new Exam());
 	}
 	
 	public Exam getExam() {
@@ -68,6 +71,14 @@ public class UserSession {
 
 	public void setCurrentUser(String currentUser) {
 		this.currentUser = currentUser;
+	}
+
+	public Exam getCurrentExam() {
+		return currentExam;
+	}
+
+	public void setCurrentExam(Exam currentExam) {
+		this.currentExam = currentExam;
 	}
 
 	public void reset() {

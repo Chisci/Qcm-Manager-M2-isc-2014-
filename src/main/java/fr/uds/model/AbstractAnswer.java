@@ -9,8 +9,6 @@ import javax.persistence.Version;
 
 @Entity
 public abstract class AbstractAnswer {
-
-	private static int nb_instance = 0;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,10 +21,7 @@ public abstract class AbstractAnswer {
 	@Column
 	private String text;
 	
-	private int myID;
-	
 	public AbstractAnswer() {
-		this.myID = nb_instance++;
 	}
 	
 	public AbstractAnswer(String text) {
@@ -56,14 +51,6 @@ public abstract class AbstractAnswer {
 
 	public void setVersion(final int version) {
 		this.version = version;
-	}
-	
-	public int getMyID() {
-		return myID;
-	}
-
-	public void setMyID(int myID) {
-		this.myID = myID;
 	}
 
 	@Override

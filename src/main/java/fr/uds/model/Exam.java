@@ -47,7 +47,7 @@ public class Exam implements Serializable {
 	
 	private String author;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private User user;
 
 	public User getUser() {

@@ -131,11 +131,10 @@ public class ExamController {
 		
 			exam = examService.getExamById(id);
 			
-			System.err.println(id+"\n"+exam);
-			
 			// mapper l'exam avec son id
 			
 			model.addAttribute("exam", exam);
+			userSession.setCurrentExam(exam);
 	
 			return ADD_TAKEEXAM;
 		}
@@ -145,22 +144,23 @@ public class ExamController {
 	@RequestMapping(value = "/take.do", method = RequestMethod.POST)
 	public String result(HttpServletRequest request, Model model) {
 		
+		Exam currentExam = userSession.getCurrentExam();
 		ExamTaken examTaken = new ExamTaken();
 		// à remplacer par LE bon exam' et pas le dernier qui traine dans la session
-		examTaken.setExam(userSession.getExam());
+		examTaken.setExam(currentExam);
 		
-		for (Question question : userSession.getQuestions()) {
+		for (Question question : currentExam.getQuestions()) {
 			AnswerTaken answerTaken = new AnswerTaken();
 			answerTaken.setRelatedQuestion(question);
 			for (AbstractAnswer answer : question.getAnswers()) {
-				if("on".equals(request.getParameter(""+answer.getMyID()))) { 
+				if("on".equals(request.getParameter(""+answer.getId()))) { 
 					answerTaken.setAnswer(answer);
 				}
 			}
 			examTaken.getAnswers().add(answerTaken);
 		}
 		
-		examTakenService.save(examTaken);
+		//examTakenService.save(examTaken);
 		
 		model.addAttribute("examTaken", examTaken);
 		return DISPLAY_SCORE;
