@@ -5,40 +5,42 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <title>Create Question</title>
 </head>
 <body>
 	<form method="post">
-		<table>
-			<tr>
-				<td><label for="question">Question :</label></td>
-				<td><input id="question" name="question" type="text" /></td>
-			</tr>
-			<tr>
-				<td><label for="answer1">Answer 1 :</label></td>
-				<td><input id="answer1" name="answer1" type="text" /></td>
-				<td><input id="answer1" name="answer1check" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><label for="answer2">Answer 2 :</label></td>
-				<td><input id="answer2" name="answer2" type="text" /></td>
-				<td><input id="answer2" name="answer2check" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><label for="answer3">Answer 3 :</label></td>
-				<td><input id="answer3" name="answer3" type="text" /></td>
-				<td><input id="answer3" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><label for="answer4">Answer 4 :</label></td>
-				<td><input id="answer4" name="answer4" type="text" /></td>
-				<td><input id="answer4" type="checkbox"></td>
-			</tr>
-			<tr>
-				<td><a href="<c:url value="/exam/create.do"/>"><input type="button" value="Cancel" /></a></td>
-				<td><input type="submit" name="submitQuestion" value="Submit Question"></td>
-			</tr>
-		</table>
+		<fieldset>
+		<legend>Create Question</legend>
+
+				<label for="question">Question :</label>
+				<input id="question" name="question" type="text" />
+				<br/>
+			
+				<label for="answer1">Answer 1 :</label>
+				<input id="answer1" name="answer1" type="text" />
+				<input id="answer1" name="answer1check" type="checkbox">
+				<br/>
+			
+				<label for="answer2">Answer 2 :</label>
+				<input id="answer2" name="answer2" type="text" />
+				<input id="answer2" name="answer2check" type="checkbox">
+			<br/>
+			
+				<label for="answer3">Answer 3 :</label>
+				<input id="answer3" name="answer3" type="text" />
+				<input id="answer3" type="checkbox">
+			<br/>
+			
+				<label for="answer4">Answer 4 :</label>
+				<input id="answer4" name="answer4" type="text" />
+				<input id="answer4" type="checkbox">
+			<br/>
+			
+				<a href="<c:url value="/exam/create.do"/>"><input type="button" value="Cancel" /></a>
+				<input type="submit" name="submitQuestion" value="Submit Question">
+			
+		</fieldset>
 
 	</form>
 </body>
