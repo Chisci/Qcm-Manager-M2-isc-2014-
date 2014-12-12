@@ -76,13 +76,6 @@ public class User implements Serializable,UserDetails {
 	public void setName(String nom) {
 		this.name = nom;
 	}   
-	public String getRole() {
-		return this.role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
