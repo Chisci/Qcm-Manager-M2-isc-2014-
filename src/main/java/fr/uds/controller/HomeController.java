@@ -2,6 +2,7 @@ package fr.uds.controller;
 
 import java.text.ParseException;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.uds.model.User;
+import fr.uds.service.UserService;
 import fr.uds.service.UserSession;
 
 /**
@@ -32,26 +35,26 @@ import fr.uds.service.UserSession;
  */
 
 @Controller
-public class UserController {
+public class HomeController {
 
-	private static final String HOME = "welcome";
+	private static final String HOME = "home";
 	
-	private static final String REGISTER = "register";
-
-
 	@Autowired
 	private UserSession userSession;
+	
+	@Resource
+	private UserService userService;
 
-	@RequestMapping(value = "/register.do", method = RequestMethod.GET)
-	public String register(HttpServletRequest request, Model model)
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	public String home(HttpServletRequest request, Model model)
 			throws ParseException {
-
-		return REGISTER;
-	}
-
-	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
-	public String finish(HttpServletRequest request, Model model)
-			throws ParseException {
+		User newUser;
+		newUser = userService.createUser(request.getUserPrincipal().getName());
+		userSession.setUser(newUser);
+		model.addAttribute("session", userSession);
+		
+		System.err.println(userService.getAll());
 		return HOME;
 	}
+
 }

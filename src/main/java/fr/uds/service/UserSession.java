@@ -20,7 +20,7 @@ public class UserSession {
 	
 	private List<Question> questions = new ArrayList<Question>();
 	
-	private User user = new User();
+	private User user;
 	
 	public Exam getExam() {
 		return exam;

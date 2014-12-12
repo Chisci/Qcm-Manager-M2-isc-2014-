@@ -27,10 +27,9 @@
 	<%
 		} else {
 	%>
+
 	<p>Bonjour : ${pageContext.request.userPrincipal.name}</p>
 	<a href="<c:url value="/j_spring_security_logout" />">Logout</a>
-	<%
-		}
-	%>
+	<%} %>
 </body>
 </html>

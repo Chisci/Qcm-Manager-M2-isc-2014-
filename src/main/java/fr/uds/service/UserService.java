@@ -33,4 +33,12 @@ public class UserService {
 	public List<User> getAll() {
 		return dao.getAllUser();
 	}
+
+	public User createUser(String name) {
+		User newUser = new User();
+		newUser.setUsername(name);
+		dao.persist(newUser);
+		
+		return newUser;
+	}
 }
