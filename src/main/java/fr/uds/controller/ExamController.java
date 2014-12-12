@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.uds.model.AbstractAnswer;
 import fr.uds.model.AnswerTaken;
+import fr.uds.model.Exam;
 import fr.uds.model.ExamTaken;
 import fr.uds.model.Question;
 import fr.uds.model.User;
@@ -25,21 +26,6 @@ import fr.uds.service.UserSession;
 
 /**
  * Session Bean implementation class ExamController
- */
-/**
- * 
- * Exemple de code
- * 
- * @Autowired private DummyService dummyService;
- * @RequestMapping(value = "/create.do", method = RequestMethod.POST) public
- *                       String create(Model model, @RequestParam String
- *                       dummyInput) {
- * 
- *                       model.addAttribute("dummyString",
- *                       dummyService.dummy(dummyInput));
- * 
- *                       return SUCCESS; }
- *
  */
 
 @Controller
@@ -77,7 +63,7 @@ public class ExamController {
 
 		String loggedUser = request.getUserPrincipal().getName();
 		
-		userSession.getUser().setUsername(loggedUser);
+		userSession.setCurrentUser(loggedUser);
 		model.addAttribute("session", userSession);
 		model.addAttribute("exams", examService.getAll());
 		
@@ -111,8 +97,15 @@ public class ExamController {
 			// e.printStackTrace();
 		}
 
-		 examService.save(userSession.getExam());
+		userSession.getExam().setQuestions(userSession.getQuestions());
 
+		userSession.getExam().setAuthor(request.getUserPrincipal().getName());
+		
+		 examService.save(userSession.getExam());
+		 
+		 userSession.reset();
+//		 userSession = new UserSession();
+		 
 		return REDIRECT;
 	}
 

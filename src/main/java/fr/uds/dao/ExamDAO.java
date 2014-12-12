@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import fr.uds.model.Exam;
+import fr.uds.model.Question;
 
 @Repository
 public class ExamDAO {

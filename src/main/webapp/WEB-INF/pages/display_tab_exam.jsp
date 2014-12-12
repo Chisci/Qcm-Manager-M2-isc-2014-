@@ -5,22 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 <title>Display exam list</title>
 </head>
 <body>
-	<p>User session : ${ session.user.username }</p>
+	<p>User session : ${ session.currentUser }</p>
 	<fieldset>
 		<legend>Exam list : </legend>
 
 		<c:forEach items="${exams}" var="exam">
 
 			<label for="${ exam.id }">${ exam.title }</label>
-			<c:if test="${ exam.user } == ${ request.getUserPrincipal() }">
-				<label>Modifier</label>
+			<label>created by ${ exam.author }</label>
+			<c:if test="${ exam.author == session.currentUser }">
+				<input type="button" value="Manage Exam">
 			</c:if>
-			<c:if test="${ exam.user } != ${ request.getUserPrincipal() }">
-				<label>Take</label>
+			<c:if test="${ exam.author != session.currentUser }">
+				<a href="<c:url value="/exam/take.do?id=${ exam.id }"/>"><input type="button" value="Take Exam"></a>
 			</c:if>
+
+			<br />
 		</c:forEach>
 	</fieldset>
 </body>

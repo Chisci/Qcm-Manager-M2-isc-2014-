@@ -16,11 +16,20 @@ import fr.uds.model.User;
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class UserSession {
 	
-	private Exam exam = new Exam();
+	private Exam exam;
 	
-	private List<Question> questions = new ArrayList<Question>();
+	private List<Question> questions;
 	
-	private User user = new User();
+	private User user;
+	
+	private String currentUser;
+	
+	public UserSession(){
+		
+		exam = new Exam();
+		questions = new ArrayList<Question>();
+		user = new User();
+	}
 	
 	public Exam getExam() {
 		return exam;
@@ -53,7 +62,21 @@ public class UserSession {
 		this.user = user;
 	}
 	
+	public String getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(String currentUser) {
+		this.currentUser = currentUser;
+	}
+
 	public void reset() {
+		
+		exam = new Exam();
+		questions = new ArrayList<Question>();
+	}
+	
+	public void reset_test() {
 		ScopedObject scopedObject = (ScopedObject)this;
 		scopedObject.removeFromScope();
 	}
