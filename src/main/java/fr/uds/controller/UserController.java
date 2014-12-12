@@ -52,7 +52,9 @@ public class UserController {
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String finish(HttpServletRequest request, Model model)
 			throws ParseException {
-
+		
+		
+		
 		return HOME;
 	}
 }

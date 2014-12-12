@@ -24,6 +24,11 @@ public class UserService {
 	}
 	
 	@Transactional
+	public User register(String login,String pass) {
+		
+	}
+	
+	@Transactional
 	public User getByUsername(String username) {
 		
 		return  dao.getUserByUsername(username);

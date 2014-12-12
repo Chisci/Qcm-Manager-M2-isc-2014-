@@ -47,7 +47,7 @@
 
 		<property name="dataSource" ref="hsqldbDataSource" />
 
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="persistenceXmlLocation" value="classpath:persistence.xml" />
 
 	</bean>
 
@@ -59,6 +59,8 @@
 		<property name="password" value="" />
 	</bean>
 
+	<bean id="userDAO" class="fr.uds.dao.UserDAO"></bean>
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<mvc:annotation-driven />
