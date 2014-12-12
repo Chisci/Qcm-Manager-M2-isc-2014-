@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fr.uds.model.AbstractAnswer;
 import fr.uds.model.AnswerTaken;
+import fr.uds.model.Exam;
 import fr.uds.model.ExamTaken;
 import fr.uds.model.Question;
 import fr.uds.model.User;
@@ -118,6 +119,8 @@ public class ExamController {
 
 	@RequestMapping(value = "/take.do", method = RequestMethod.GET)
 	public String displayTakeExam(HttpServletRequest request, Model model) {
+		
+		Exam exam = null;
 
 		/*
 		 * Il faudrait créer une autre 'session' à passer à cette jsp, qui irait
@@ -128,9 +131,23 @@ public class ExamController {
 		 * le gars qui passe l'examen
 		 */
 
-		model.addAttribute("session", userSession);
-
-		return ADD_TAKEEXAM;
+		long id = 0;
+		String test = (request.getParameter("id"));
+		
+		if(test != null){	
+			id = Long.parseLong(request.getParameter("id"));
+		
+			exam = examService.getExamById(id);
+			
+			System.err.println(id+"\n"+exam);
+			
+			// mapper l'exam avec son id
+			
+			model.addAttribute("exam", exam);
+	
+			return ADD_TAKEEXAM;
+		}
+		return "";
 	}
 
 	@RequestMapping(value = "/take.do", method = RequestMethod.POST)
