@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.aop.scope.ScopedObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +17,10 @@ import fr.uds.model.AbstractAnswer;
 import fr.uds.model.AnswerTaken;
 import fr.uds.model.ExamTaken;
 import fr.uds.model.Question;
+import fr.uds.model.User;
 import fr.uds.service.ExamService;
 import fr.uds.service.ExamTakenService;
+import fr.uds.service.UserService;
 import fr.uds.service.UserSession;
 
 /**
@@ -67,17 +69,27 @@ public class ExamController {
 	@Resource
 	private ExamTakenService examTakenService;
 	
+	@Resource
+	private UserService userService;
+	
 	@RequestMapping(value = "/display.do", method = RequestMethod.GET)
-	public String displayGET(Model model) {
+	public String displayGET(HttpServletRequest request, Model model) {
+
+		String loggedUser = request.getUserPrincipal().getName();
 		
+		userSession.getUser().setUsername(loggedUser);
+		model.addAttribute("session", userSession);
 		model.addAttribute("exams", examService.getAll());
 		
 		return DISPLAY_TAB;
 	}
 
 	@RequestMapping(value = "/create.do", method = RequestMethod.GET)
-	public String createGET(Model model) {
+	public String createGET(HttpServletRequest request, Model model) {
 
+//		User user = new User();
+//		user.setUsername(request.getUserPrincipal().getName());
+//		userSession.getExam().setUser(user);
 		model.addAttribute("exam", userSession.getExam());
 		model.addAttribute("questions", userSession.getQuestions());
 		model.addAttribute("session", userSession);

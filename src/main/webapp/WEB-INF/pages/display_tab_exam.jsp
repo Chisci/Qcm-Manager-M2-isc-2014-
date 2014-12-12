@@ -8,6 +8,7 @@
 <title>Display exam list</title>
 </head>
 <body>
+	<p>User session : ${ session.user.username }</p>
 	<fieldset>
 		<legend>Exam list : </legend>
 
@@ -20,7 +21,6 @@
 			<c:if test="${ exam.user } != ${ request.getUserPrincipal() }">
 				<label>Take</label>
 			</c:if>
-
 		</c:forEach>
 	</fieldset>
 </body>

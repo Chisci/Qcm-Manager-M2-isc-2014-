@@ -3,6 +3,7 @@ package fr.uds.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.aop.scope.ScopedObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,8 @@ public class UserSession {
 	
 	private List<Question> questions = new ArrayList<Question>();
 	
-	private User user;
-
+	private User user = new User();
+	
 	public Exam getExam() {
 		return exam;
 	}
@@ -50,5 +51,10 @@ public class UserSession {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public void reset() {
+		ScopedObject scopedObject = (ScopedObject)this;
+		scopedObject.removeFromScope();
 	}
 }

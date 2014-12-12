@@ -132,5 +132,4 @@ public class User implements Serializable,UserDetails {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
 }
