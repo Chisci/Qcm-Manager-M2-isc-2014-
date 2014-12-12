@@ -1,21 +1,16 @@
 package fr.uds.dao;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import fr.uds.model.User;
 
 @Repository
-public class UserDAO implements UserDetailsService {
+public class UserDAO {
 	
 	
 	@PersistenceContext(name="qcm-persistence-unit")
@@ -34,13 +29,5 @@ public class UserDAO implements UserDetailsService {
 	public List<User> getAllUser() {
 		
 		return entityManager.createQuery("SELECT u FROM User u").getResultList();
-	}
-	
-	@Override
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
-        return entityManager.createQuery("from User where username = :username", User.class)
-                .setParameter("username", username)
-                .getSingleResult();
 	}
 }

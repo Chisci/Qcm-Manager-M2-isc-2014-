@@ -13,9 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
-import org.springframework.context.annotation.Role;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -44,7 +42,7 @@ public class User implements Serializable,UserDetails {
 	
 	private String name;
 	
-	private List<GrantedAuthority>  authorities;
+	private String role;
 	
 	@OneToMany
 	private List<Exam> exams = new ArrayList<Exam>();
@@ -126,14 +124,5 @@ public class User implements Serializable,UserDetails {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public void setAuthorities(List<String> roles)
-	{// Je fais ce que je veux nicolas, si j'ai envie de faire des accolades comme ça je le fais MOFO
-		List<GrantedAuthority> listOfAuthorities = new ArrayList<GrantedAuthority>();
-		for (String role : roles)
-		{
-			listOfAuthorities.add(new GrantedAuthorityImpl(role));
-		}
-		this.authorities = listOfAuthorities;
 	}
 }

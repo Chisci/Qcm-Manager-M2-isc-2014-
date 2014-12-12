@@ -9,26 +9,21 @@
      	<form-login 
 		    login-page="/"/>
 		<logout logout-success-url="/" />
-        <intercept-url pattern="/question/**" access="ROLE_USER,ROLE_ADMIN"/>
-        <intercept-url pattern="/exam/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="question**" access="ROLE_USER,ROLE_ADMIN"/>
+        <intercept-url pattern="/exam/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/take**" access="ROLE_USER,ROLE_ADMIN"/>
     </http>
 
-<authentication-manager alias ="authentificationManager">
-   <authentication-provider user-service-ref="userDAO" />
-</authentication-manager>	
-	
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="tristan" password="toto" authorities="ROLE_USER"/>
+                <user name="challut" password="titi" authorities="ROLE_ADMIN"/>
+                <user name="pe" password="tata" authorities="ROLE_ADMIN"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+<!-- <authentication-manager> -->
+<!--    <authentication-provider user-service-ref="MyUserDetailsService" /> -->
+<!-- </authentication-manager> -->
 </beans:beans>
-
-
-
-
-
-<!--     <authentication-manager> -->
-<!--         <authentication-provider> -->
-<!--             <user-service> -->
-<!--                 <user name="tristan" password="toto" authorities="ROLE_USER"/> -->
-<!--                 <user name="challut" password="titi" authorities="ROLE_ADMIN"/> -->
-<!--                 <user name="pe" password="tata" authorities="ROLE_ADMIN"/> -->
-<!--             </user-service> -->
-<!--         </authentication-provider> -->
-<!--     </authentication-manager> -->
